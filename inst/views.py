@@ -18,11 +18,7 @@ def index(request):
 
 
 @login_required(login_url='/accounts/login/')
-def comment(request,id):from django.shortcuts import render
-
-# Create your views here.
-def welcome(request):
-    return HttpResponse('Welcome to Instaclone')
+def comment(request,id):
 	
 	post = get_object_or_404(Pic,id=id)	
 	current_user = request.user
@@ -35,11 +31,7 @@ def welcome(request):
 			comment = form.save(commit=False)
 			comment.user = current_user
 			comment.pic = post
-			comment.save()from django.shortcuts import render
-
-# Create your views here.
-def welcome(request):
-    return HttpResponse('Welcome to Instaclone')
+			comment.save()
 			return redirect('index')
 	else:
 		form = CommentForm()
