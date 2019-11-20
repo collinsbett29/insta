@@ -49,7 +49,7 @@ As a user of the application i should be able to:
 | Behavior        | Input           | Output |
 | ------------- |:-------------:| -----:|
 | Display sign up for | N/A | Display sign up form when a user visits the site |
-| Create an account | Fill the sign up form and **click submit** | Create an account and profile for the user and log the user into the site |
+| Create an account | Fill the sign up form and `click submit`s | Create an account and profile for the user and log the user into the site |
 | Display current user's profile | **Click** the user icon | Display the current user's profile page with their posts |
 | Upload a post | **Click** create post | Direct the user to a page with a form where the user can create and submit a post |
 | See other users | **Click** compass icon | Direct the user to a page where they see a list of other users |
