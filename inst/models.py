@@ -116,3 +116,6 @@ class Likes(models.Model):
 
 	def save_like(self):
 		self.save() 
+
+
+
