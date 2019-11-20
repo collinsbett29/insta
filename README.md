@@ -46,7 +46,7 @@ As a user of the application i should be able to:
 
 ## Specifications
 
-| Behavior        | Input           | Outcome  |
+| Behavior        | Input           | Output |
 | ------------- |:-------------:| -----:|
 | Display sign up for | N/A | Display sign up form when a user visits the site |
 | Create an account | Fill the sign up form and **click submit** | Create an account and profile for the user and log the user into the site |
