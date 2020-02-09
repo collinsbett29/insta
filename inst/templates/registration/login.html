@@ -1,42 +1,32 @@
-{%extends "registration/base.html"%}
-{% load bootstrap3 %}
-{% block content %}
-<div class="container">
-  <div class="row">
-    <!-- Empty div -->
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      {% if form.errors %}
-        <p> Password or Username is incorrect </p>
-      {% endif %}
-      <div class="panel panel-default">
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
 
-        <div class="panel-heading">
-          <h3 class="text-center">Sign In</h3>
-        </div>
-        <div class="panel-body">
 
-          <form  action="/accounts/login/" method="post">
-            {% csrf_token %}
-            {% bootstrap_form form%}
-
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Login">
-            </div>
-
-            <input type="hidden" name="next" value="{{next}}">
-
-          </form>
-          <a href="{% url 'registration_register' %}">Register</a>
-
-        </div>
-
-      </div>
-
-    </div>
-    <!-- empty div -->
-    <div class="col-md-4"></div>
-  </div>
-</div>
-
+{% block styles%}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %}
+{% block content %}
+    <!-- {% if form.errors %}
+  <p class="small">Password or Username is incorrect</p>
+  {% endif %} -->
+  <div class="container main">
+    <div class="row pt-2">
+      <div class="col-md-3 mx-auto">
+        <div class="form-section">
+          <h1 class="mx-auto text-center">Instagram</h1>
+          <form class="nbrand" action="/accounts/login/" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="font-weight-bold">
+              <input type="submit" class="btn btn-outline-info btn-sm" value="Log in">
+              <p>Don't have an account? <a href="/accounts/register/">Sign-Up</a></p>
+            </div>
+            <input type="hidden" name="next" value="/">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

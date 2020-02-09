@@ -29,14 +29,111 @@
 <div class="card" style="margin-left: 150px; margin-top: 80px">
   <div class="container" style="border-top: 1px solid #EEEEEE; width: 515px; height: 100px"><br><br>
       <h2><!-- {{pic.user}} --></h2>
-      <img src="{{pic.pic.url}}" class="master-card" style="width:100px;height:100px;border-radius:50%;padding:15px; margin-top: -60px">
+      <img src="{{pic.pic.url}}" class="img-responsive" class="master-card" style="width:100px;height:100px;border-radius:50%;padding:15px; margin-top: -60px">
       <a style="margin-top: 15000px;margin-bottom: 3opx;"><a style="color: black" href="{% url 'profile' %}">{{pic.user}}</a>
   </div>
 
 <img src="{{pic.pic.url}}" alt="Avatar"  style="width:514px; ">
 <div class="container" style="margin: 50px">
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-{%extends 'base.html' %}
+  {% load static %}
+  
+  
+  {% block styles%}
+  {{block.super}}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Fugaz+One|Marck+Script|Special+Elite|Yellowtail&display=swap"
+    rel="stylesheet">
+  {% endblock %}
+  
+  {% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+          {% for image in images %}
+        <div class="image">
+          <img src="{{image.post.url}}" width="70%" height="100%" class="img-responsive">
+          <p class="title mx-auto"><strong>{{image.user.username}}</strong></p>
+          <p class="caption">
+            {{image.caption}}
+          </p>
+          <p><a href=" {% url 'like' image_id=image.id %}">
+              <i class="fa fa-heart-o" style="font-size:28px; color:red;"
+                aria-hidden="true"></i></a>&nbsp;&nbsp;{{image.count_likes}} likes</p>
+          <p class="text-muted title">{{image.posted_on|timesince}}</p>
+          <div>
+            <h6>Comments</h6>
+            {% for comment in comments %}
+            {% if comment.image_id == image.id %}
+            <ul class="comment">
+              <li> {{ comment.user.username }} says:
+                <span class="caption">"{{ comment.comment }}"</span>
+              </li>
+            </ul>
+  
+            {% else %}
+            {% endif %}
+            {% endfor %}
+            <div class="comment-form">
+              <form action="{% url 'comment' image_id=image.id %}" method="post">
+                {% csrf_token %}
+                <input class="p-1 mb-2" class="form-control form-control-sm" name="comment" id="comment{{image.id}}"
+                  type="text" placeholder="comment">
+                <span>
+                  <button class="btn btn-outline-info my-2 my-sm-0 btn-sm p-1" type="submit">Comment</button>
+                </span>
+              </form>
+            </div>
+            <div class="hidden-data {{ image.pk }}" style="display: none;">
+              <span class="image-pk">{{ image.pk }}</span>
+            </div>
+  
+  
+            </h5>
+          </div>
+        </div>
+        <hr class="hor">
+  
+        {% endfor%}
+      </div>
+  
+  
+      <div class="col-md-4">
+        <p class="text-muted"> Follow other users</p> <hr>
+        <div class="list-deco">
+          {% for profile in profiles %}
+          {% if user.username == profile.username%}
+          {%else%}
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="/user/{{profile.id}}" class="others"><img src="/static/img/profile.jpeg"
+                    alt="avatar" class="img-circle" height="150px" width="150px"> {{profile.username}}
+              </a>
+            </li>
+            {% if profile in people %}
+            <li class="list-inline-item">
+              <a href="/unfollow/{{profile.id}}"><button class="btn btn-success btn-sm">Following</button></a>
+            </li>
+            {% else %}
+            <li class="list-inline-item">
+              <a href="/follow/{{profile.id}}"><button class="btn btn-success btn-sm">Follow</button></a>
+            </li>
+            {% endif %}
+          </ul>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+  
+    </div>
+  
+  
+  
+  </div>
+  
+  {% endblock %}3">
     <i onclick="myFunction(this)" class="fa fa-heart" style="font-size:28px;  background-color: white ; margin-top: -200px; margin-left: -30px"></i>
      <a href="{% url 'comment' id=pic.pk %} "><i class="fa fa-comment-o" style="font-size:24px; margin-left: 20px"></i></a>
   </div>
@@ -92,11 +189,6 @@ function myFunction(x) {
   <p style="margin-left: 80px; margin-top: 40px; color: #BDBDBD;">{{pic.pub_date | timesince}}</p>
 </div>
 <!--   {% endfor %} -->
-This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
-This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
-This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
-This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
-text.
 
 
 </div><br>

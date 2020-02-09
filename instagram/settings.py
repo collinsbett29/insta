@@ -34,15 +34,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'inst.apps.InstConfig',
+    'tinymce',
+    'bootstrap4',
+    'friendship',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce',
-    'bootstrap3',
-    'inst.apps.InstConfig',
+
 ]
 
 # Simplified static file serving.
@@ -89,7 +91,7 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instagram',
+        'NAME': 'insta',
         'USER': 'collins',
     'PASSWORD': '##@@collins1',
     }
@@ -100,6 +102,13 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
+
+
+
+
+
+    
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
