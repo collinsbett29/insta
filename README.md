@@ -1,4 +1,4 @@
-# Insta-Clone
+# Instagram
 
 ### Built By;
 Collins K. Bett
@@ -65,7 +65,6 @@ As a user of the application i should be able to:
   * Django version 1.11
   * Bootstrap 3
   * Postgres Database
-  * Sqlite
   * HTML & CSS 
   * Heroku
 
