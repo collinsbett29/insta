@@ -113,7 +113,6 @@ def signup(request):
 @login_required(login_url='/accounts/login/')
 def unfollow(request, user_id):
     other_user = User.objects.get(id=user_id)
-
     follow = Follow.objects.remove_follower(request.user, other_user)
 
     return redirect('home')
