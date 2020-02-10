@@ -5,7 +5,6 @@ from tinymce.models import HTMLField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 class Profile(models.Model):
     """
     Class that contains profile details
@@ -76,8 +75,7 @@ class Comments(models.Model):
     """
     comment = HTMLField()
     posted_on = models.DateTimeField(auto_now=True)
-    image = models.ForeignKey(
-        Image, on_delete=models.CASCADE, related_name='comments')
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null="True")
 
     def __str__(self):
@@ -99,10 +97,8 @@ class Comments(models.Model):
 
 
 class Likes(models.Model):
-    user_like = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='likes')
-    liked_post = models.ForeignKey(
-        Image, on_delete=models.CASCADE, related_name='likes')
+    user_like = models.ForeignKey( User, on_delete=models.CASCADE, related_name='likes')
+    liked_post = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='likes')
 
     def save_like(self):
         self.save()
